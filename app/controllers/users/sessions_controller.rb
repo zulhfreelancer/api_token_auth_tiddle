@@ -21,10 +21,18 @@ class Users::SessionsController < Devise::SessionsController
 
     if current_user
       Tiddle.expire_token(current_user, request)
-      render json: {status: "Success", message: "User signed-out successfully"}
+      respond_to do |format|
+        # when "Log out" is clicked in HTML, sign out and redirect to root
+        format.html { super }
+        format.json {render json: {status: "Success", message: "User signed-out successfully"}}
+      end
     else
-      render json: {status: "Error", message: "User not signed-out"}
+      respond_to do |format|
+        format.html { super }
+        format.json { render json: {status: "Error", message: "User not signed-out"} }
+      end
     end
+
   end
 
   private

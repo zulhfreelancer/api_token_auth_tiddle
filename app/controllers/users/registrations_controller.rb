@@ -22,6 +22,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+
+    respond_to do |format|
+      format.html {super}
+      format.json {
+        # also required X-USER-EMAIL and X-USER-TOKEN inside the headers
+        email = params[:user][:email]
+        user  = User.find_by_email(email)
+        if params[:user][:password] == params[:user][:password_confirmation]
+          if user.update(password: params[:user][:password])
+            render json: {status: "Success", message: "Password changed"}
+          else
+            render json: {status: "Error", message: "Password not changed"}
+          end
+        else
+          render json: {status: "Error", message: "Password not matched"}
+        end
+      }
+    end
+
+  end
+
   private
 
   	def user_params
