@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyString
+  user_id: 
+  last_used_at: 2016-03-05 21:29:39
+  ip_address: MyString
+  user_agent: MyString
+
+two:
+  body: MyString
+  user_id: 
+  last_used_at: 2016-03-05 21:29:39
+  ip_address: MyString
+  user_agent: MyString
