@@ -20,11 +20,14 @@ class Users::SessionsController < Devise::SessionsController
     #   2: X-USER-TOKEN "string" // Eg: QVGMnbXLUqTwtzdnNQCx
 
     if current_user
-      Tiddle.expire_token(current_user, request)
       respond_to do |format|
         # when "Log out" is clicked in HTML, sign out and redirect to root
+        # and, no need to delete the token
         format.html { super }
-        format.json {render json: {status: "Success", message: "User signed-out successfully"}}
+        format.json {
+          Tiddle.expire_token(current_user, request)
+          render json: { status: "Success", message: "User signed-out successfully" }
+        }
       end
     else
       respond_to do |format|
