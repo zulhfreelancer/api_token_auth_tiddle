@@ -30,6 +30,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # also required X-USER-EMAIL and X-USER-TOKEN inside the headers
         email = request.headers["X-USER-EMAIL"]
         user  = User.find_by_email(email)
+
+        # if want to check user current_password, use this:
+        # http://stackoverflow.com/a/4370106/1577357
+
         if params[:user][:password] == params[:user][:password_confirmation]
           if user.update(password: params[:user][:password])
             destroy_all_token(user)

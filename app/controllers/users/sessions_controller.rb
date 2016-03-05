@@ -45,6 +45,7 @@ class Users::SessionsController < Devise::SessionsController
     # if we remove this method, we'll get 204 No Content
     # and the destroy method above will not be triggered
     # flow: /users/sign_out.json -> this method -> destroy method above
+    # learn more: https://github.com/adamniedzielski/tiddle/issues/25
     def verify_signed_out_user
       # just leave it empty
     end
