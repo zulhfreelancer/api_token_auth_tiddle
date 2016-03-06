@@ -33,5 +33,10 @@ module ApiTokenAuthTiddle
       end
     end
 
+    # if this Rails app is for API ONLY, disable Rails session
+    # http://blog.sundaycoding.com/blog/2015/04/04/token-authentication-with-tiddle/#rails-session
+    # we turn off this because we allow users to login via web too (need Rails session)
+    # config.middleware.delete ActionDispatch::Session::CookieStore
+
   end
 end
