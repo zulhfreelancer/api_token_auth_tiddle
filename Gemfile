@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'tiddle'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'awesome_print', require: 'ap'
 
 group :development do
 	gem 'byebug'

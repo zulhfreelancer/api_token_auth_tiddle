@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   before_action :set_user
 
   def index
-    render json: Post.all
+    render json: Post.all.order(updated_at: :desc)
   end
 
   def create
