@@ -22,6 +22,6 @@ Rails.application.routes.draw do
 
   # [GET]     get all posts:    http://localhost:3000/posts.json
   # [POST]    create a post:    http://localhost:3000/posts.json
-  # [PUT]     update a post:    http://localhost:3000/:id/posts.json
-  # [DELETE]  delete a post:    http://localhost:3000/:id/posts.json
+  # [PUT]     update a post:    http://localhost:3000/posts/:id.json
+  # [DELETE]  delete a post:    http://localhost:3000/posts/:id.json
 end

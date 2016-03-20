@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
+  before_action :set_post, only: [:destroy]
+
   def index
     render json: Post.all.order(updated_at: :desc)
   end
@@ -19,11 +21,25 @@ class PostsController < ApplicationController
   	end
   end
 
+  def destroy
+    @post.destroy
+
+    if @post.destroyed?
+      render json: {status: "Success", message: "Post destroyed"}
+    else
+      render json: {status: "Error", message: "Failed to destroy the post"}
+    end
+  end
+
   private
 
   	def set_user
   		@user = current_user
   	end
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
   	def post_params
       params.require(:post).permit(:body)
