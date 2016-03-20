@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
-  before_action :set_post, only: [:destroy]
+  before_action :set_post, only: [:update, :destroy]
 
   def index
     render json: Post.all.order(updated_at: :desc)
@@ -19,6 +19,14 @@ class PostsController < ApplicationController
   	else
   		render json: {status: "Error", message: "Failed to save post"}
   	end
+  end
+
+  def update
+    if @post.update(post_params)
+      render json: {status: "Success", message: "Post updated"}
+    else
+      render json: {status: "Error", message: "Failed to update the post"}
+    end
   end
 
   def destroy
